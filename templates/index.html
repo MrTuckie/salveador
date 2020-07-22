@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title>Salveador</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='assets/main.css') }}"
+    />
+  </head>
+  <body>
+    <div id="app" class="container">
+      <h1>Salveador</h1>
+      {% for flash_message in get_flashed_messages() %}
+      <div class="flash">{{ flash_message }}</div>
+      {% endfor %}
+
+      <h2>Salves recentes</h2>
+      <div class="content">
+        {% if messages %}
+        <ul>
+          {% for message in messages %}
+          <li>{{ message.body }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+
+      <h2>Mande um salve!</h2>
+      <form
+        method="post"
+        action="/add-compliment"
+        class="main-form"
+        id="compliment-form"
+      >
+        <div class="form-row">
+          <label for="to">
+            Número para mandar salve
+            <input type="tel" placeholder="+5527999901234" name="to" />
+          </label>
+          <label for="sender">
+            Seu nome
+            <input type="text" placeholder="Joaquim" name="sender" />
+          </label>
+        </div>
+        <div class="form-row">
+          <label for="receiver">
+            Pessoa para salvar
+            <input type="text" placeholder="Aristóteles" name="receiver" />
+          </label>
+          <label for="compliment">
+            Seu salve
+            <input type="text" placeholder="Salve" name="compliment" />
+          </label>
+        </div>
+      </form>
+      <button form="compliment-form" class="compliment-button">
+        Salvar
+      </button>
+    </div>
+  </body>
+</html>
